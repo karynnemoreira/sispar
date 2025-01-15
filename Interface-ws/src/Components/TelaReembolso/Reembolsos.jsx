@@ -1,7 +1,6 @@
 import React from "react";
 
-import "../Reembolsos/style.css";
-
+import "../TelaReembolso/style.css";
 import Home from "./img-reembolsos/home.png";
 import Seta from "./img-reembolsos/seta.png";
 
@@ -19,90 +18,94 @@ import Navbar from "../Navbar/Navbar";
 
 export default function Reembolsos() {
   return (
-    <section className="ContainerGeralReembolsos">
-      <Navbar/>
-      
-      <header>
-        <nav>
-          <img src={Home} alt="Vetor Home" />
-          <img src={Seta} alt="Vetor Seta Avançar" />
-          <p>Reembolsos</p>
-        </nav>
+    <section className="body">
 
-        <section>
-          <h1>Reembolsos</h1>
-          <p>
-            Solicite novos pedidos de reembolso, visualize as solicitações
-            atuais e todo o histórico.
-          </p>
-        </section>
-      </header>
+    
 
-      <main>
-        <section className="containerSolicitacoes">
-          <div className="boxOneReembolso">
-            <img src={SolicitarReembolso} alt="Vetor Solicitar Reembolso" />
-            <h5>Solicitar Reembolso</h5>
-          </div>
+      <Navbar />
+      <section className="ContainerGeralReembolsos">
+        <header >
+          <nav id="path">
+            <img src={Home} alt="Vetor Home" />
+            <img src={Seta} alt="Vetor Seta Avançar" />
+            <p>Reembolsos</p>
+          </nav>
 
-          <div className="boxTwoVerTodos">
-            <img src={VerTodos} alt="Vetor Ver Todos" />
-            <h5>Ver todos</h5>
-          </div>
+          <section>
+            <h1>Reembolsos</h1>
+            <p>
+              Solicite novos pedidos de reembolso, visualize as solicitações
+              atuais e todo o histórico.
+            </p>
+          </section>
+        </header>
 
-          <div
-            className="boxthreeHistorico"
-          >
-            <img src={Historico} alt="Vetor Histórico" />
-            <h5>Histórico</h5>
-          </div>
-        </section>
+        <main>
+          <section className="containerSolicitacoes">
+            <div className="boxOneReembolso">
+              <img src={SolicitarReembolso} alt="Vetor Solicitar Reembolso" />
+              <h5>Solicitar Reembolso</h5>
+            </div>
 
-<section className="containerVetores">
-  <div className="boxSolicitados">
-    <div>
-         <img src={Solicitados} alt="" />
-    </div>
-    <p className="quantidade"> 182</p>
-    <p className="andamento"> Solicitados</p>
-  </div>
+            <div className="boxTwoVerTodos">
+              <img src={VerTodos} alt="Vetor Ver Todos" />
+              <h5>Ver todos</h5>
+            </div>
 
-  
-  <div className="boxAnalise">
-    <div>
-          <img src={Analise} alt="" />
+            <div
+              className="boxthreeHistorico"
+            >
+              <img src={Historico} alt="Vetor Histórico" />
+              <h5>Histórico</h5>
+            </div>
+          </section>
 
-    </div>
-    <p className="quantidade"> 74</p>
-    <p className="andamento"> Em análise</p>
-  </div>
-
-  <div className="boxAprovados">
-    <div>
-          <img src={Aprovados} alt="" />
-
-    </div>
-    <p className="quantidade"> 195</p>
-    <p className="andamento"> Aprovados</p>
-  </div>
+          <section className="containerVetores">
+            <div className="boxSolicitados">
+              <div>
+                <img src={Solicitados} alt="" />
+              </div>
+              <p className="quantidade"> 182</p>
+              <p className="andamento"> Solicitados</p>
+            </div>
 
 
-  <div className="boxRejeitados">
-    <div>
-          <img src={Rejeitados} alt="" />
-    </div>
-    <p className="quantidade"> 41</p>
-    <p className="andamento">Rejeitados</p>
-  </div>
+            <div className="boxAnalise">
+              <div>
+                <img src={Analise} alt="" />
 
-</section>
+              </div>
+              <p className="quantidade"> 74</p>
+              <p className="andamento"> Em análise</p>
+            </div>
 
-<section className="containerNuvem">
-  <img src={Nuvem} alt="Vetor Nuvem" />
-  <p>Sistema atualizado em tempo real.</p>
-</section>
+            <div className="boxAprovados">
+              <div>
+                <img src={Aprovados} alt="" />
 
-      </main>
+              </div>
+              <p className="quantidade"> 195</p>
+              <p className="andamento"> Aprovados</p>
+            </div>
+
+
+            <div className="boxRejeitados">
+              <div>
+                <img src={Rejeitados} alt="" />
+              </div>
+              <p className="quantidade"> 41</p>
+              <p className="andamento">Rejeitados</p>
+            </div>
+
+          </section>
+
+          <section className="containerNuvem">
+            <img src={Nuvem} alt="Vetor Nuvem" />
+            <p>Sistema atualizado em tempo real.</p>
+          </section>
+
+        </main>
+      </section>
     </section>
   );
 }

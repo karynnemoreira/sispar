@@ -1,9 +1,14 @@
 import React from 'react';
 import '../Login/style.css';
 import logoWS from '../../assets/logo-ws.png';
-
+import api from '../../Services/Api'
+import { data } from 'react-router';
 
 export default function Login() {
+
+  // api.post('/login', data: {
+    
+  // })
   return (
       <section className='container-login'>
         {/* background */}

@@ -9,7 +9,7 @@ import Reembolsos from './Components/TelaReembolso/Reembolsos.jsx';
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <Routes>
-      <Route path='/login' element={<Login/>}/>
+      <Route path='/' element={<Login/>}/>
       <Route path='/nav' element={<Navbar/>}/>
       <Route path='/reembolso' element={<Reembolsos />}/>
     </Routes>

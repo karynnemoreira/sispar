@@ -7,6 +7,7 @@ import boletos from '../../assets/vetores/boletos.png'
 import clientes from '../../assets/vetores/clientes.png'
 import sair from '../../assets/vetores/sair.png'
 import './style.css'
+import { useNavigate } from 'react-router'
 
 export default function Navbar() {
 
@@ -15,6 +16,12 @@ export default function Navbar() {
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
+
+  const navigate = useNavigate()
+
+  const handleLogoff = () => {
+    navigate('/login')
+  } 
 
   return (
       <nav>
@@ -29,7 +36,7 @@ export default function Navbar() {
           <button><img src={clientes} alt="" /></button>
         </section>
 
-        <button id='btn-logoff'><img src={sair} alt="" /></button>
+        <button id='btn-logoff' onClick={handleLogoff}><img src={sair} alt="" /></button>
       </nav>
   )
 }

@@ -4,6 +4,7 @@ from src.model.employee_model import Employee
 from src.security.cript import hash_pwd, check_pwd
 from sqlalchemy.exc import SQLAlchemyError
 
+
 bp_employee = Blueprint('employee', __name__, url_prefix='/employee')
 
 

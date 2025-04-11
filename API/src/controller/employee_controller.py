@@ -2,8 +2,7 @@ from flask import Blueprint,request,jsonify, session
 from src.model import db
 from src.model.employee_model import Employee
 from src.security.cript import hash_pwd, check_pwd
-from sqlalchemy.exc import SQLAlchemyError
-
+from sqlalchemy.exc import SQLAlchemyError 
 
 bp_employee = Blueprint('employee', __name__, url_prefix='/employee')
 
@@ -12,6 +11,7 @@ bp_employee = Blueprint('employee', __name__, url_prefix='/employee')
 def register_employee():
     data_new_employee = request.get_json()
     new_employe = Employee(data_new_employee['name'],data_new_employee['last_name'],data_new_employee['cpf'],data_new_employee['email'], hash_pwd(data_new_employee['password']))
+    
     try:
         db.session.add(new_employe)
         db.session.commit()
@@ -22,11 +22,11 @@ def register_employee():
         
 @bp_employee.route('/login', methods=['POST',])
 def login():
-    
     try:
         data_login = request.get_json()
         email = data_login.get('email')
-        password = data_login.get('password')
+        password = data_login.get('senha')
+        print(data_login)
         
         if not email or not password:
             return jsonify({'error': "Email e senha são obrigatórios"}), 400
@@ -40,10 +40,12 @@ def login():
             return jsonify({'error': 'Usuário não encontrado'}), 404
             
 
-        if data_login['email'] == employee['email'] and check_pwd(data_login['password'], employee['password']):
-            # Armazena o id em uma sessão
-            session['employee_id'] = employee['id'] 
-            return jsonify({'response': 'Login realizado com sucesso'}), 200
+        if data_login['email'] == employee['email'] and check_pwd(data_login['senha'], employee['password']):
+            
+            from flask_jwt_extended import create_access_token # Função para criar o token de acesso
+            access_token = create_access_token(identity = str(employee['id'])) # Identity precisa ser uma String
+            print(access_token)
+            return jsonify({'response': 'Login realizado com sucesso', 'access_token': access_token}), 200
         
     except SQLAlchemyError as e:
         print(f'Database error {e}')

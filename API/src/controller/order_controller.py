@@ -9,5 +9,6 @@ def generate_order_code():
 from src.model.order import Order
 
 def create_order_number(order_number):
-    new_order = Order(order_number)
+    order = generate_order_code()
+    new_order = Order(order)
     return new_order

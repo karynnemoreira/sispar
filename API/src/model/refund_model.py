@@ -1,46 +1,46 @@
 from src.model import db
-from datetime import date
+from sqlalchemy import text, func
 
 class Refund(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    employee = db.Column(db.String(255))
-    company = db.Column(db.String(100))
-    type_refund = db.Column(db.String(50))
-    cost_center = db.Column(db.String(150))
-    order_intern = db.Column(db.Integer)
-    division = db.Column(db.Integer)
-    pep = db.Column(db.Integer)
-    coin = db.Column(db.Enum('BRL', 'USD', 'EUR'))
-    value = db.Column(db.Float)
-    date = db.Column(db.Date, nullable=False, default=date.today)
-    reason = db.Column(db.String(1000))
-    category = db.Column(db.String(100))
-    status = db.Column(db.Enum('pendente', 'aprovado', 'negado'), default='pendente', nullable=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    colaborador = db.Column(db.String(255))
+    empresa = db.Column(db.String(100))
+    tipo_reembolso = db.Column(db.String(50))
+    centro_custo = db.Column(db.String(150))
+    ordem_interna = db.Column(db.Integer, nullable=True)
+    divisao = db.Column(db.Integer, nullable = True)
+    pep = db.Column(db.Integer, nullable=True)
+    moeda = db.Column(db.String(10))
+    valor = db.Column(db.Float)
+    data = db.Column(db.Date, nullable=False, server_default=func.current_date())
+    motivo = db.Column(db.String(1000))
+    distancia_km = db.Column(db.String(100))
+    valor_km = db.Column(db.Integer)
+    valor_taxa = db.Column(db.Integer)
+    status = db.Column(db.String(10))
     employee_id = db.Column(db.Integer, db.ForeignKey('employee.id'), nullable = False)
-    order_id = db.Column(db.Integer, db.ForeignKey('order.id'), nullable= False)
+    numero_prestacao_contas = db.Column(db.String(25))
     
     
-    def __init__(self, employee, company, type_refund, cost_center, order_intern, division, pep, coin, value, date, reason, category, status, emplooye_id, order_id):
-        if value <=0:
+    def __init__(self, colaborador, empresa, tipo_reembolso, centro_custo,ordem_interna, divisao, pep, moeda, valor, data, motivo, numero_prestacao_contas, employee_id, status='pendente'):
+        if valor <=0:
             raise ValueError('O valor deve ser maior que 0')
+    
         
-        if not category:
-            raise ValueError('A categoria é obrigatória')
-        
-        self.employee = employee
-        self.company = company
-        self.type_refund = type_refund
-        self.cost_center = cost_center
-        self.order_intern = order_intern
-        self.division = division
+        self.colaborador = colaborador
+        self.empresa = empresa
+        self.tipo_reembolso = tipo_reembolso
+        self.centro_custo = centro_custo
+        self.ordem_interna =ordem_interna
+        self.divisao = divisao
         self.pep = pep
-        self.coin = coin
-        self.date = date
-        self.reason = reason
-        self.category = category
+        self.moeda = moeda
+        self.valor = valor
+        self.data = data
+        self.motivo = motivo
         self.status = status
-        self.employee_id = emplooye_id
-        self.order_id = order_id
+        self.numero_prestacao_contas = numero_prestacao_contas
+        self.employee_id = employee_id
 
         
         
@@ -48,10 +48,10 @@ class Refund(db.Model):
         """Converte o objeto em um dicionário para ser usado em APIs."""
         return {
             "id": self.id,
-            "value": self.value,
-            "date": self.date.isoformat() if self.date else None,
-            "reason": self.reason,
-            "category": self.category,
+            "value": self.valor,
+            "date": self.data.isoformat() if self.date else None,
+            "reason": self.motivo,
+            "category": self.tipo_reembolso,
             "employee_id": self.employee_id,
         }
         

@@ -33,13 +33,13 @@ def ask_refund():
             empresa=data['empresa'],
             tipo_reembolso=data['tipoReembolso'], 
             centro_custo=data['centroCusto'], 
-            ordem_interna=data['ordemInterna'], 
-            divisao=data['divisao'], 
-            pep=data['pep'], 
+            ordem_interna=int(data['ordemInterna']), 
+            divisao=int(data['divisao']), 
+            pep=int(data['pep']), 
             moeda=data['moeda'], 
             valor=int(data['valorFaturado']),
             data=data['data'],
-            motivo=data['motivo'], 
+            motivo=data['descricao'], 
             numero_prestacao_contas=data['nPrestacao'],
             employee_id=user_id)
         new_refunds.append(new_refund)

@@ -39,7 +39,7 @@ def ask_refund():
             moeda=data['moeda'], 
             valor=int(data['valorFaturado']),
             data=data['data'],
-            motivo=data['descricao'], 
+            motivo=data['motivo'], 
             numero_prestacao_contas=data['nPrestacao'],
             employee_id=user_id)
         new_refunds.append(new_refund)

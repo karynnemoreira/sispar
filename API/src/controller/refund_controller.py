@@ -9,13 +9,13 @@ bp_refund = Blueprint('refund', __name__, url_prefix="/refunds")
 
 
 @bp_refund.route('/new', methods=['POST',])
-@jwt_required()
+# @jwt_required()
 def ask_refund():
     data_refund = request.get_json()
 
-    current_user = get_jwt_identity()
+    # current_user = get_jwt_identity()
     print('*'*200)
-    user_id = current_user
+    user_id = 1
     print('-'*100)
     print(user_id)
     print('-'*100)
